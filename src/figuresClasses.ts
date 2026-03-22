@@ -20,7 +20,10 @@ export class Triangle implements Figure {
     if (
       this.a >= this.b + this.c ||
       this.b >= this.a + this.c ||
-      this.c >= this.a + this.b
+      this.c >= this.a + this.b ||
+      this.a <= 0 ||
+      this.b <= 0 ||
+      this.c <= 0
     ) {
       throw new Error(
         `throws an error: sides ${this.a}, ${this.b}, ${this.c} can't form a triangle`,
@@ -32,7 +35,7 @@ export class Triangle implements Figure {
     const p = (this.a + this.b + this.c) / 2;
     const area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
 
-    return Number(area.toFixed(2));
+    return Math.floor(area * 100) / 100;
   }
 }
 
@@ -79,7 +82,7 @@ export class Rectangle implements Figure {
   }
 
   public getArea(): number {
-    return Number((this.height * this.width).toFixed(2));
+    return Math.floor(this.height * this.width * 100) / 100;
   }
 }
 
